@@ -3,7 +3,7 @@ name: Check Attendance
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/15 10-16 * * 1-5'
 
 jobs:
   build:

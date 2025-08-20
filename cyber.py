@@ -41,9 +41,11 @@ def send_telegram(msg):
     print("Telegram status:", r.json())
 
 
-def calculate_attendance_message(course, present, total):
+def calculate_attendance_message(course, present, total, status):
     percentage = (present / total * 100) if total > 0 else 0
-    msg = f"📘 *{course}*\nAttendance: {present}/{total} ({percentage:.2f}%)"
+    
+    status_emoji = "✅" if status == "Present" else "❌"
+    msg = f"📘 *{course}*\n{status_emoji} Marked as *{status}*\nAttendance: {present}/{total} ({percentage:.2f}%)"
 
     if percentage < 75:
         x = math.ceil((0.75 * total - present) / 0.25)
@@ -86,8 +88,17 @@ def check_attendance():
 
         old = prev_state.get(code, {})
         if old.get("present") != present or old.get("total") != total:
+            # Determine status
+            status = "Unknown"
+            old_present = old.get("present", 0)
+            old_total = old.get("total", 0)
+            if present > old_present and total > old_total:
+                status = "Present"
+            elif present == old_present and total > old_total:
+                status = "Absent"
+
             # Attendance changed → send Telegram message
-            msg = calculate_attendance_message(c["courseName"], present, total)
+            msg = calculate_attendance_message(c["courseName"], present, total, status)
             send_telegram(msg)
 
     # Step 5: Save new state
