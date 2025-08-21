@@ -5,6 +5,7 @@ import os
 import schedule
 import time
 from datetime import datetime
+import subprocess
 
 LOGIN_URL = "https://kiet.cybervidya.net/api/auth/login"
 COURSES_URL = "https://kiet.cybervidya.net/api/student/dashboard/registered-courses"
@@ -60,6 +61,18 @@ def calculate_attendance_message(course, present, total, status):
     return msg
 
 
+def commit_and_push():
+    try:
+        subprocess.run(['git', 'config', '--global', 'user.name', 'Vercel Cron'], check=True)
+        subprocess.run(['git', 'config', '--global', 'user.email', 'vercel-cron@example.com'], check=True)
+        subprocess.run(['git', 'add', STATE_FILE], check=True)
+        commit_message = f"Update attendance state on {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}"
+        subprocess.run(['git', 'commit', '-m', commit_message], check=True)
+        subprocess.run(['git', 'push'], check=True)
+        print("Changes pushed to the repository.")
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to push changes: {e}")
+
 def check_attendance():
     print(f"Checking attendance at {datetime.now()}...")
     # Step 1: Login
@@ -104,6 +117,9 @@ def check_attendance():
     # Step 5: Save new state
     with open(STATE_FILE, "w") as f:
         json.dump(new_state, f)
+
+    # Step 6: Commit and push changes
+    commit_and_push()
 
 
 if __name__ == "__main__":
