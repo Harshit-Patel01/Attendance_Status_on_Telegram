@@ -4,13 +4,21 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '5 10 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '45 11 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '35 12 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '35 13 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '25 14 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '15 15 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '4 16 * * 1-5'
+      timezone: 'Asia/Kolkata'
     - cron: '55 16 * * 1-5'
+      timezone: 'Asia/Kolkata'
 
 jobs:
   build:
