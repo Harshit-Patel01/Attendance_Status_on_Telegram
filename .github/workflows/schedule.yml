@@ -3,22 +3,14 @@ name: Check Attendance
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 10 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '45 11 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '35 12 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '35 13 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '25 14 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '15 15 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '4 16 * * 1-5'
-      timezone: 'Asia/Kolkata'
-    - cron: '55 16 * * 1-5'
-      timezone: 'Asia/Kolkata'
+    - cron: '35 4 * * 1-5'
+    - cron: '15 6 * * 1-5'
+    - cron: '05 7 * * 1-5'
+    - cron: '05 8 * * 1-5'
+    - cron: '55 8 * * 1-5'
+    - cron: '45 9 * * 1-5'
+    - cron: '34 10 * * 1-5'
+    - cron: '25 11 * * 1-5'
 
 jobs:
   build:
