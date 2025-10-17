@@ -22,8 +22,8 @@ To use this bot for your own account, follow these steps:
 
 | Secret Name | Description |
 | :--- | :--- |
-| `USERNAME` | Your CyberVidya username. |
-| `PASSWORD` | Your CyberVidya password. |
+| `USERNAME` | Your username. |
+| `PASSWORD` | Your password. |
 | `BOT_TOKEN` | Your Telegram bot token. |
 | `CHAT_ID` | The chat ID for the Telegram user or group to receive notifications. |
 
